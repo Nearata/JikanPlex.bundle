@@ -1,0 +1,25 @@
+[
+    {
+        "id": "extraPosters",
+        "label": "Extra posters.",
+        "type": "enum",
+        "values": [
+            "None",
+            "Only Small",
+            "Only Large",
+            "Small and Large"
+        ],
+        "default": "None"
+    },
+    {
+        "id": "getCast",
+        "label": "Characters, Voice Actors or none.",
+        "type": "enum",
+        "values": [
+            "None",
+            "Characters",
+            "Voice Actors"
+        ],
+        "default": "None"
+    }
+]
