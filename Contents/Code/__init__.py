@@ -73,7 +73,7 @@ class JikanPlex(Agent.TV_Shows):
         metadata.duration = int( str(searchData["duration"]).split(" ")[0] )
         
         # Check user choice for posters
-        if EXTRA_POSTERS == "small and large":
+        if EXTRA_POSTERS == "Small and Large":
             postersData = GetData( JIKAN_URL + JIKAN_ANIME_PICTURES.format( id=metadata.id ) )
                 
             # Small Posters
@@ -88,7 +88,7 @@ class JikanPlex(Agent.TV_Shows):
                     try: metadata.posters[ posterLarge["large"] ] = Proxy.Preview(HTTP.Request( posterLarge["large"] ).content)
                     except: pass
                         
-        elif EXTRA_POSTERS == "only small":
+        elif EXTRA_POSTERS == "Only Small":
             postersData = GetData( JIKAN_URL + JIKAN_ANIME_PICTURES.format( id=metadata.id ) )
                 
             # Small Posters
@@ -97,7 +97,7 @@ class JikanPlex(Agent.TV_Shows):
                     try: metadata.posters[ posterSmall["small"] ] = Proxy.Preview(HTTP.Request( posterSmall["small"] ).content)
                     except: pass
                         
-        elif EXTRA_POSTERS == "only large":
+        elif EXTRA_POSTERS == "Only Large":
             postersData = GetData( JIKAN_URL + JIKAN_ANIME_PICTURES.format( id=metadata.id ) )
                 
             # Large Posters
@@ -170,41 +170,41 @@ class JikanPlex(Agent.TV_Shows):
                     searchData = GetData( JIKAN_URL + JIKAN_ANIME_DETAILS.format( id=animeSequelId ) )
                     
                     # Check user choice for posters
-                    if EXTRA_POSTERS == "small and large":
+                    if EXTRA_POSTERS == "Small and Large":
                         postersData = GetData( JIKAN_URL + JIKAN_ANIME_PICTURES.format( id=animeSequelId ) )
                             
                         # Small Posters
                         for posterSmall in postersData["pictures"]:
-                            if posterSmall["small"] not in metadata.posters:
-                                try: metadata.posters[ posterSmall["small"] ] = Proxy.Preview(HTTP.Request( posterSmall["small"] ).content)
+                            if posterSmall["small"] not in season.posters:
+                                try: season.posters[ posterSmall["small"] ] = Proxy.Preview(HTTP.Request( posterSmall["small"] ).content)
                                 except: pass
                         
                         # Large Posters
                         for posterLarge in postersData["pictures"]:
-                            if posterLarge["large"] not in metadata.posters:
-                                try: metadata.posters[ posterLarge["large"] ] = Proxy.Preview(HTTP.Request( posterLarge["large"] ).content)
+                            if posterLarge["large"] not in season.posters:
+                                try: season.posters[ posterLarge["large"] ] = Proxy.Preview(HTTP.Request( posterLarge["large"] ).content)
                                 except: pass
                         
-                    elif EXTRA_POSTERS == "only small":
+                    elif EXTRA_POSTERS == "Only Small":
                         postersData = GetData( JIKAN_URL + JIKAN_ANIME_PICTURES.format( id=animeSequelId ) )
                         
                         # Small Posters
                         for posterSmall in postersData["pictures"]:
-                            if posterSmall["small"] not in metadata.posters:
-                                try: metadata.posters[ posterSmall["small"] ] = Proxy.Preview(HTTP.Request( posterSmall["small"] ).content)
+                            if posterSmall["small"] not in season.posters:
+                                try: season.posters[ posterSmall["small"] ] = Proxy.Preview(HTTP.Request( posterSmall["small"] ).content)
                                 except: pass
                         
-                    elif EXTRA_POSTERS == "only large":
+                    elif EXTRA_POSTERS == "Only Large":
                         postersData = GetData( JIKAN_URL + JIKAN_ANIME_PICTURES.format( id=animeSequelId ) )
                             
                         # Large Posters
                         for posterLarge in postersData["pictures"]:
-                            if posterLarge["large"] not in metadata.posters:
-                                try: metadata.posters[ posterLarge["large"] ] = Proxy.Preview(HTTP.Request( posterLarge["large"] ).content)
+                            if posterLarge["large"] not in season.posters:
+                                try: season.posters[ posterLarge["large"] ] = Proxy.Preview(HTTP.Request( posterLarge["large"] ).content)
                                 except: pass
                     else:
-                        if searchData["image_url"] not in metadata.posters:
-                            metadata.posters[ searchData["image_url"] ] = Proxy.Preview(HTTP.Request( searchData["image_url"] ).content)
+                        if searchData["image_url"] not in season.posters:
+                            season.posters[ searchData["image_url"] ] = Proxy.Preview(HTTP.Request( searchData["image_url"] ).content)
                     
                     episodesData = GetData( JIKAN_URL + JIKAN_ANIME_EPISODES.format( id=animeSequelId ) )
                     # Season episodes
